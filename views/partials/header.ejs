@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head >
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Home Page</title>
+  <link href="/css/style.css" rel="stylesheet" type="text/css" />
+
+<!--   links in the nav bar at the top of the pages -->
+      <div id="navBar">
+<!--     home button -->
+          <a id='logo' href="/">
+            <img id='logo' src="img/logo.png">
+          </a>
+<!--  buttons for sign in and cart -->
+    <div id="navBarLinks">
+
+          <% if (typeof userName != "undefined"){ %>
+            <form action="/update">
+              <button id="signIn">
+                <img src="img/signIn.png"> 
+                <br>
+                <span class="userName" id="signInMessage" name="userName"><%= userName %></span>
+              </button>
+            </form>
+          <% } %>
+          <% if (typeof userName == "undefined"){ %>
+            <form action="/signIn">
+              <button id="signIn">
+                <img src="img/signIn.png"> 
+                <br>
+                <span class="signInMessage" id="userName" name="userName">Sign In </span>
+              </button>
+            </form>
+          <% } %>
+<!--   cart form -->
+      <form action="/cart">
+        <button id="cart">
+          <span id="itemCount"> 4 </span>
+          <img src="img/cart.png"> 
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+<!--   for drop down menus -->
+  <div id="options">
+    <h1></h1>
+      <div id="shoeMenu">
+        <a id="shoes" href="/shoes">Shoes</a>
+        <ul id="submenu">
+          <li> <a id="menShoes" href="/mensShoes"> Men's Shoes </a> </li>
+          <li> <a id="womenShoes" href="/womensShoes"> Women's Shoes </a> </li>
+        </ul>
+      </div>
+    
+    <div id="shirtMenu">
+      <a id="shirts" href="/shirts"> Shirts </a>
+      <ul id="submenu"> 
+        <li> <a id="menshirts" href="/menShirts"> Men's Shirts </a> </li>
+        <li> <a id="womenshirts" href="/womensShirts"> Women's Shirts </a> </li>
+      </ul>
+    </div>
+
+    <div id="pantsMenu">
+      <a id="pants" href="/pants">Pants</a>
+      <ul id="submenu"> 
+        <li> <a id="menpants" href="/mensPants"> Men's Pants </a> </li>
+        <li> <a id="womenpants" href="womensPants"> Women's Pants </a> </li>
+      </ul>
+    </div>
+  </div>
+  
+<% var customerID %>
+<script src="/js/changeSignInText.js"></script>
+</head>
+
+  

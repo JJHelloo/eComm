@@ -1,0 +1,19 @@
+<%- include('partials/header.ejs') %>
+  
+<body>
+
+  <br>
+  <h1> Pants </h1>
+  
+      <% for (i=0; i <images.length; i++) { %>
+
+        <div class="card">
+          <img id="images" src="<%= images[i].urls.small %>" alt="Image of clothes" />
+          <h3 id="price"> $<%= (Math.random() * (300 - 100) + 100).toFixed(2) %> </h3>
+        </div> 
+
+      <% } %>
+
+
+</body>
+</html>

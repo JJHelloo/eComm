@@ -1,0 +1,35 @@
+<%- include('partials/loginHeader.ejs') %>
+  
+<body>
+ <br><br><br>
+  <h1></h1>
+    <div id="card">
+      <h2>Ecom Shop</h2>
+      <div id="input-container">
+        
+        <form id="indexForm" method="POST" action='/signIn'>
+        
+          <input type="text" id="userEmail" name="email" placeholder="Email">
+          <br><br>
+          <input type="password" id="userPassword" name="password" placeholder="Password">
+          <br><br>
+          
+          <button class="indexButtons" id="signin" name="fuck"> Sign in </button>
+       
+          <% if (typeof error != "undefined"){ %>
+            <br><br>
+        	  <span id="error"><%= error %> </span>
+          <% } %>
+        </form>
+        <br>
+            
+        <form action="/register">
+          <button class="indexButtons">Sign Up </button>
+        </form> 
+
+    </div>
+  </div>
+  <br>
+  <br>
+<!--  <script src="/js/changeSignInText.js"> </script> -->
+</body>

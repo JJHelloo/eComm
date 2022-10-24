@@ -1,0 +1,29 @@
+<%- include('partials/loginHeader.ejs') %>
+  
+<body>
+ <br><br><br>
+  <h1></h1>
+    <div id="card">
+      <h2>Ecom Shop</h2>
+      <div id="input-container">
+        
+  <form id="indexForm" method="POST" action="/update">
+
+    <input type="text" id="indexUsername" name="userEmail" placeholder="Email">
+    <br><br>
+<!--   error if the email is taken already -->
+  <% if (typeof error != "undefined"){ %>
+  	<span style="color:white;" id="error"><%= error %> </span>
+  <% } %>
+    <br><br>
+    <button class="signUpButtons" id="signin"> Update Email  </button>
+  </form> 
+    <br><br>
+    <form  action="/logout"> 
+      <button class="signUpButtons" > Log Out </button>
+    </form>
+    </div>
+    </div>
+  <br>
+  <br>
+</body>

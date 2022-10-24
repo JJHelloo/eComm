@@ -1,0 +1,158 @@
+body {
+  text-align:center;
+}
+#navBar {
+  background-color: #42506b;
+  padding-bottom: 5em;
+  margin: -.5em -.5em -.5em -.5em;
+  min-width:0;
+}
+#links {
+  position: relative;
+  padding-top:1em;
+  display: inline-flex;
+  float: right;
+  margin-right: 1em;
+}
+#cart {
+ border-style: hidden;
+  background-color: #42506b;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
+#cart:hover {
+  border-style: solid;
+  border-color: #fff;
+  border-radius: 05%;
+}
+#itemCount {
+/*   color: #66BD6D; the color is green */
+  color: #ffc677; 
+  font-size: 2em;
+  position: absolute;
+  top: -5px;
+  right: 25px;
+}
+#signIn {
+  border-style: hidden;
+  background-color: #42506b;
+  color: #fff;
+  position: relative;
+  top: -10px;
+  font-size: 1em;
+}
+#signIn:hover {
+  border-style: solid;
+  border-color: #fff;
+  border-radius: 05%;
+}
+#options {
+  position: relative;
+  top: 20px;
+  min-width:0;
+  margin: -.5em -.5em -.5em -.5em;
+    background-color: #e9e9eb;
+  font-size: 1.3em;
+  padding-bottom: 1em;
+  padding-top: .1em;
+  text-align: center;
+  
+}
+#options a {
+  color:black;
+  text-decoration: none;
+  padding-left: 2em;
+  padding-right: 2em;
+  top: 50px;
+  text-align: center;
+}
+#options a:hover {
+  color: #3a5074;
+}
+#card {
+    background-color: #3a5074;  
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 10px;
+    width: 350px;
+    height: 400px;
+    padding-top: 15px;
+    border-radius: 10px;
+/*     box-shadow: 0 0 40px 0 rgba(0,0,0,1); */
+    box-shadow: 5px 05px 5px 5px  rgba(0,0,0,0.1);
+}
+#card input {
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 15px;
+  height: .01em;
+}
+#input-container  {
+  margin-top: 2rem;
+}
+#logo {
+  background-color: #42506b;
+  float: left;
+  margin-top: 5px;
+  margin-left: 20px;
+  width: 60px;
+  height: 60px;
+}
+.indexButtons {
+  background-color:#e9e9eb;
+  border: none;
+  border-radius: 5px;
+  color: #3a5074;
+  font-size: 16px;
+  max-width: 300px;
+  text-align: center;
+  padding-right:30px;
+  padding-left:30px;
+  margin-top: 1.5rem;
+} 
+.signUpButtons {
+  background-color:white;
+  border: none;
+  border-radius: 5px;
+  color: #3a5074;
+  font-size: 16px;
+  max-width: 300px;
+  text-align: center;
+  padding-right:30px;
+  padding-left:30px;
+/*   color:black; */
+}
+ #signin {
+   background-color: #ffc677;
+   color:black;
+ }
+#signin:hover {
+  background-color: #f9d39f;
+  color:black;
+}
+footer {
+  float: center;
+}
+h4 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #fff;
+}
+
+h3 {
+  color: #556ff7;
+  font-style: oblique;
+}
+#error {
+  color: red;
+  font-size: 1.3em;
+}
+
+::placeholder {
+  color: black;
+}
