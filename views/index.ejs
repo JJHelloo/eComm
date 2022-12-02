@@ -1,18 +1,17 @@
 <%- include('partials/header.ejs') %>
   
 <body>
-
+    
   <br>
   <h1>Featured Items </h1>
-      <% for (i=0; i <images.length; i++) { %>
+      <% for (i=0; i <rows.length; i++) { %>
 
         <div class="card">
-          <img id="images" src="<%= images[i].urls.small %>" alt="Image of clothes" />
-          <h3 id="price"> $<%= (Math.random() * (300 - 100) + 100).toFixed(2) %> </h3>
+           <img id="images" name ="images" src="<%= rows[i].img %>" alt="Image of clothes">
+          <h3 id="price" name="price">  $<%= rows[i].productPrice %> </h3>
+          <input type="hidden"> </intput>
+          <button id="addToCart"> Add to Cart </button>
         </div> 
-
       <% } %>
-
-
 </body>
 </html>

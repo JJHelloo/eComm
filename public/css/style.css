@@ -1,5 +1,10 @@
 body {
   text-align:center;
+  background-color: #131516;
+}
+h1 {
+/*   background-color: #131516 */
+  color: white;
 }
 #navBar {
   background-color: #42506b;
@@ -53,14 +58,14 @@ body {
   position: relative;
   top: 20px;
   margin: -.5em -1.6em -.5em -.5em;
-  
-  background-color: #e9e9eb;
+/*   background-color: #e9e9eb; */
+  background-color: rgb(36, 39, 40);
   font-size: 1.3em;
   padding-top: .1em;
   text-align: center;
 }
 #options #shoes, #shirts, #pants {
-  color:black;
+  color: white;
   text-decoration: none;
   padding-left: .4em;
   padding-right: .4em;
@@ -81,7 +86,8 @@ body {
   height: 300px;
 }
 .card {
-  background-color: #e9e9eb;
+/*   background-color: #e9e9eb; */
+  background: rgb(36, 39, 40);
   border-radius:20px;
   padding-top: 1px;
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.35);
@@ -104,6 +110,7 @@ box-shadow: 10px 10px 5px 0px rgba(58,80,116,0.70);
   position: absolute;
   float:left;
   left: 30px;
+  color: white;
 }
 #logo {
   background-color: #42506b;
@@ -166,17 +173,20 @@ box-shadow: 10px 10px 5px 0px rgba(58,80,116,0.70);
   pointer-events: auto;
   opacity: 1;
 }
+#addToCart{
+  position: absolute;
+  border: none;
+  background-color: #8694ac;
+  padding: 5px;
+  color: white;
+  border-radius: 8px;
+  right: 20px;
+  top: 21.65rem;
+}
+#addToCart:hover {
+  background-color: #3a5074;
+}
 
 /* #shirtMenu > #shirts:hover + #submenu {
   opacity:1;
 } */
-
-
-
-
-
-
-
-
-
-

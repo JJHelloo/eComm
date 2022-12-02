@@ -5,12 +5,11 @@ const pool = require("./dbPool.js");
 app.set("view engine", "ejs");
 const fetch = require("node-fetch");
 const faker = require('faker');
-const session = require('express-session')
+const session = require('express-session');
 const bcrypt = require('bcrypt');
+var cart = require('./public/js/cart.js');
 const saltRounds = 10;
 var count = 0;
-
-// var firstName;
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extend: true }));
@@ -33,15 +32,15 @@ app.use(session({
 
 
 app.get('/', async (req, res) => {
-  // pull images from unsplash api 
-  let url = 'https://api.unsplash.com/search/photos/?query=nike-shoes&per_page=12&client_id=97UNfAJO8C__9X4betCQvGY_-vSurh52YqL6ubB8cwk';
-  let response = await fetch(url);
-  let data = await response.json();
-  // console.log(data);
-  let imageList = data.results;
 
-  res.render("index", { "images": imageList, userName: req.session.firstName });
+  let sql = `SELECT *
+            FROM products`;
+  let rows = await executeSQL(sql);
+  console.log(rows);
+
+  res.render("index", { "rows": rows, userName: req.session.firstName });
 });
+
 //newUser (register)
 app.get("/register", (req, res) => {
   res.render("signUp")
@@ -71,7 +70,6 @@ app.post("/register", async (req, res) => {
     res.render("logIn", { "error": "Please Sign In now" });
     // res.redirect("signIn") 
   }
-  // res.render('/');
 
 });
 
@@ -83,10 +81,8 @@ app.get('/signIn', (req, res) => {
 app.post('/signIn', async (req, res) => {
   let userEmail = req.body.email;
   let userPassword = req.body.password;
-  // let userName = "";
   let customerID = 0;
   let firstName;
-  // console.log("first user name is " + userName);
   // request.session.username = username;
 
   let passwordHash = "";
@@ -94,13 +90,11 @@ app.post('/signIn', async (req, res) => {
              FROM customers
              WHERE email = ?`;
   let data = await executeSQL(sql, [userEmail]);
-  // console.log(data);
 
   if (data.length > 0) {
     passwordHash = data[0].password;
     firstName = data[0].firstName;
     customerID = data[0].customerID;
-    // userName = firstName;
   }
   const match = await bcrypt.compare(userPassword, passwordHash);
 
@@ -108,7 +102,6 @@ app.post('/signIn', async (req, res) => {
     req.session.authenticated = true;
     req.session.firstName = firstName;
     req.session.customerID = customerID;
-    console.log(req.session.customerID);
     res.redirect('/');
   }
   else {
@@ -123,8 +116,6 @@ app.get('/update', async (req, res) => {
 });
 app.post('/update', async (req, res) => {
   let userEmail = req.body.userEmail;
-  // console.log(req.session.customerID);
-  // console.log(userEmail);
   let sql = `UPDATE customers
                SET email = ?
                WHERE customerID = ${req.session.customerID}`;
@@ -147,7 +138,6 @@ app.get('/shirts', async (req, res) => {
   let url = 'https://api.unsplash.com/search/photos/?query=nike-shirts&per_page=12&client_id=97UNfAJO8C__9X4betCQvGY_-vSurh52YqL6ubB8cwk';
   let response = await fetch(url);
   let data = await response.json();
-  // console.log(data);
   let imageList = data.results;
 
   res.render("shirts", { "images": imageList, userName: req.session.firstName });
@@ -157,7 +147,6 @@ app.get('/menShirts', async (req, res) => {
   let url = 'https://api.unsplash.com/search/photos/?query=nike-mens-shirts&per_page=12&client_id=97UNfAJO8C__9X4betCQvGY_-vSurh52YqL6ubB8cwk';
   let response = await fetch(url);
   let data = await response.json();
-  // console.log(data);
   let imageList = data.results;
 
   res.render("shirts", { "images": imageList, userName: req.session.firstName });
@@ -167,7 +156,6 @@ app.get('/womensShirts', async (req, res) => {
   let url = 'https://api.unsplash.com/search/photos/?query=nike-womens-shirts&per_page=12&client_id=97UNfAJO8C__9X4betCQvGY_-vSurh52YqL6ubB8cwk';
   let response = await fetch(url);
   let data = await response.json();
-  // console.log(data);
   let imageList = data.results;
 
   res.render("shirts", { "images": imageList, userName: req.session.firstName });
@@ -179,7 +167,7 @@ app.get('/shoes', async (req, res) => {
   let url = 'https://api.unsplash.com/search/photos/?query=nike-shoes&per_page=12&client_id=97UNfAJO8C__9X4betCQvGY_-vSurh52YqL6ubB8cwk';
   let response = await fetch(url);
   let data = await response.json();
-  // console.log(data);
+
   let imageList = data.results;
 
   res.render("shoes", { "images": imageList, userName: req.session.firstName });
@@ -189,7 +177,7 @@ app.get('/mensShoes', async (req, res) => {
   let url = 'https://api.unsplash.com/search/photos/?query=addidas-mens&per_page=12&client_id=97UNfAJO8C__9X4betCQvGY_-vSurh52YqL6ubB8cwk';
   let response = await fetch(url);
   let data = await response.json();
-  // console.log(data);
+
   let imageList = data.results;
 
   res.render("shoes", { "images": imageList, userName: req.session.firstName });
@@ -199,7 +187,6 @@ app.get('/womensShoes', async (req, res) => {
   let url = 'https://api.unsplash.com/search/photos/?query=shoes-womens&per_page=12&client_id=97UNfAJO8C__9X4betCQvGY_-vSurh52YqL6ubB8cwk';
   let response = await fetch(url);
   let data = await response.json();
-  // console.log(data);
   let imageList = data.results;
 
   res.render("shoes", { "images": imageList, userName: req.session.firstName });
@@ -210,7 +197,7 @@ app.get('/pants', async (req, res) => {
   let url = 'https://api.unsplash.com/search/photos/?query=pants&per_page=12&client_id=97UNfAJO8C__9X4betCQvGY_-vSurh52YqL6ubB8cwk';
   let response = await fetch(url);
   let data = await response.json();
-  // console.log(data);
+
   let imageList = data.results;
 
   res.render("pants", { "images": imageList, userName: req.session.firstName });
@@ -220,7 +207,7 @@ app.get('/mensPants', async (req, res) => {
   let url = 'https://api.unsplash.com/search/photos/?query=shorts-mens&per_page=12&client_id=97UNfAJO8C__9X4betCQvGY_-vSurh52YqL6ubB8cwk';
   let response = await fetch(url);
   let data = await response.json();
-  // console.log(data);
+
   let imageList = data.results;
 
   res.render("pants", { "images": imageList, userName: req.session.firstName });
@@ -230,7 +217,7 @@ app.get('/womensPants', async (req, res) => {
   let url = 'https://api.unsplash.com/search/photos/?query=pants-womens&per_page=12&client_id=97UNfAJO8C__9X4betCQvGY_-vSurh52YqL6ubB8cwk';
   let response = await fetch(url);
   let data = await response.json();
-  // console.log(data);
+
   let imageList = data.results;
 
   res.render("pants", { "images": imageList, userName: req.session.firstName });
@@ -243,19 +230,20 @@ app.get('/api/customers/:customerID', async (req, res) => {
              FROM customers
              WHERE customerID = ?`;
   let rows = await executeSQL(sql, [customerID]);
-  console.log("API Rows" + rows);
   res.send({ "customers": rows });
 });
 // check if logged in
 function isLoggedIn(req, res, next) {
   if (req.session.authenticated) {
-    console.log("is logged in");
     next();
   } else {
-    console.log("not logged in");
     res.redirect("/signIn");
   }
 }
+
+
+
+
 //sql function
 async function executeSQL(sql, params) {
   return new Promise(function(resolve, reject) {

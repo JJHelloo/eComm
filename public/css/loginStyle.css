@@ -29,10 +29,10 @@ body {
 }
 #itemCount {
 /*   color: #66BD6D; the color is green */
-  color: #ffc677; 
+  color: #fbb040; 
   font-size: 2em;
   position: absolute;
-  top: -5px;
+  top: -10px;
   right: 25px;
 }
 #signIn {
